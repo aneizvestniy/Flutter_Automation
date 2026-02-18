@@ -55,67 +55,39 @@ Suggested pin files: `.nvmrc` / `.tool-versions` + `fvm_config.json`.
 
 ```text
 Flutter_Automation/
-  docs/
+  docs/                         # high-level docs (entry points)
+    README.md
     LEARNING_PLAN_UA.md
     LEARNING_PLAN_EN.md
+
+  learn/                        # learning modules (week-by-week)
+    README.md
     module-01-dart-flutter-basics/
       README.md
-      devtools-guide.md
       exercises/
-        ex01_keys.md
-        ex02_widget_tree.md
-        ex03_state.md
       examples/
-        keys_demo/
-        widget_tree_demo/
-        state_demo/
     module-02-training-app/
       README.md
-      architecture.md
-      troubleshooting.md
       exercises/
-        ex01_run_app.md
-        ex02_add_feature_flag.md
     module-03-test-framework/
       README.md
-      appium-setup.md
-      page-objects.md
-      selectors-and-finders.md
-      test-data-management.md
-      troubleshooting.md
     module-04-advanced/
       README.md
-      animations-and-sync.md
-      parallel-execution.md
-      ci-github-actions.md
-      hybrid-apps.md
-      performance.md
-  app/
-    pubspec.yaml
-    lib/
-      main.dart
-      core/
-      features/
-    test/
-    integration_test/
-  packages/
-    test_utils/
-      pubspec.yaml
-      lib/
-      test/
-  e2e/
+
+  app/                          # training Flutter app (Clean Architecture)
     README.md
-    appium/
+    (generated Flutter project will live here)
+
+  testing/                      # testing setup and frameworks
+    README.md
+    unit_widget_integration/
+    e2e_appium/
+      README.md
       package.json
+      docs/
       src/
-        config/
-        drivers/
-        pages/
-        fixtures/
-        tests/
-    scripts/
-      run_android_emulator.sh
-      run_appium.sh
+    ci/
+
   .github/workflows/
     ci.yml
   .nvmrc

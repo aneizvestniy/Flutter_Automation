@@ -55,69 +55,39 @@
 
 ```text
 Flutter_Automation/
-  docs/
+  docs/                         # high-level docs (точки входу)
+    README.md
     LEARNING_PLAN_UA.md
     LEARNING_PLAN_EN.md
+
+  learn/                        # навчальні модулі (потижнево)
+    README.md
     module-01-dart-flutter-basics/
       README.md
-      devtools-guide.md
       exercises/
-        ex01_keys.md
-        ex02_widget_tree.md
-        ex03_state.md
       examples/
-        keys_demo/
-        widget_tree_demo/
-        state_demo/
     module-02-training-app/
       README.md
-      architecture.md
-      troubleshooting.md
       exercises/
-        ex01_run_app.md
-        ex02_add_feature_flag.md
-      app/                      # Flutter app workspace
     module-03-test-framework/
       README.md
-      appium-setup.md
-      page-objects.md
-      selectors-and-finders.md
-      test-data-management.md
-      troubleshooting.md
     module-04-advanced/
       README.md
-      animations-and-sync.md
-      parallel-execution.md
-      ci-github-actions.md
-      hybrid-apps.md
-      performance.md
-  app/                          # основний Flutter додаток (навчальний)
-    pubspec.yaml
-    lib/
-      main.dart
-      core/
-      features/
-    test/                       # unit + widget tests
-    integration_test/           # integration tests
-  packages/
-    test_utils/
-      pubspec.yaml
-      lib/
-      test/
-  e2e/
+
+  app/                          # навчальний Flutter-додаток (Clean Architecture)
     README.md
-    appium/
+    (тут буде згенерований Flutter-проєкт)
+
+  testing/                      # налаштування тестів і фреймворки
+    README.md
+    unit_widget_integration/
+    e2e_appium/
+      README.md
       package.json
-      playwright.config.(optional)
+      docs/
       src/
-        config/
-        drivers/
-        pages/
-        fixtures/
-        tests/
-    scripts/
-      run_android_emulator.sh
-      run_appium.sh
+    ci/
+
   .github/workflows/
     ci.yml
   .nvmrc
@@ -126,7 +96,7 @@ Flutter_Automation/
   README.md
 ```
 
-> Примітка: у модулі 2 можна зробити `docs/module-02-training-app/app/` як підказки, але сам код апки має бути у корені `app/` — так зручніше для CI.
+> Примітка: код апки тримаємо в `app/`, тести/фреймворки — в `testing/`, а навчальні матеріали — в `learn/`.
 
 ---
 

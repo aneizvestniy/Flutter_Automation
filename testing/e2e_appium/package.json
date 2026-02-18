@@ -1,0 +1,13 @@
+{
+  "name": "flutter-e2e-appium",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "E2E automation for the training Flutter app using Appium 2 + appium-flutter-driver",
+  "scripts": {
+    "test": "node ./src/tests/01_login.spec.mjs"
+  },
+  "dependencies": {
+    "webdriverio": "^9.0.0"
+  }
+}
