@@ -19,19 +19,25 @@ This repository is a training project for QA engineers with **2+ years of testin
 
 ---
 
-## 1) Coverage Strategy (how we reach ~80%)
+## 1) E2E vs Coverage — explicit separation (critical)
 
-> Key point: in Flutter automation, 80% coverage is realistically achieved via **unit/widget/integration** tests for the app code, not only via Appium E2E.
+A common misunderstanding is: **"80% coverage = write many Appium E2E tests"**.
+In Flutter projects, that is usually too slow, too flaky, and too expensive.
 
-### Approach
-- **App coverage:** unit + widget + integration tests using Flutter test runner.
-- **E2E (Appium):** fewer tests, focused on high-value end-to-end paths.
-- **Test utilities package:** `packages/test_utils` with its own tests.
+### Our rule
+- **Coverage (~80%)** is achieved via **Flutter unit/widget/integration tests** (fast, stable).
+- **E2E (Appium)** is for a *small number* of high-value user journeys (smoke/regression).
 
-### Rules of thumb
+### Test types mapping
+- **Unit tests** → domain logic (use cases), validation, mapping
+- **Widget tests** → UI states and widget composition (loading/error/success)
+- **Integration tests** → feature flows inside Flutter runtime
+- **Appium E2E** → true end-to-end flows across screens + real device interactions
+
+### Rules of thumb (to reach ~80%)
 - Every use case / repository / validator has unit tests.
-- Every screen has at least one widget test covering key states (loading/error/success).
-- Important integrations (local storage, API mock, etc.) are covered by integration tests.
+- Every screen has at least one widget test covering key states.
+- Important integrations (local storage, networking mock) are covered by integration tests.
 
 ---
 
@@ -48,6 +54,11 @@ This repository is a training project for QA engineers with **2+ years of testin
 - **Xcode (optional):** 15.x
 
 Suggested pin files: `.nvmrc` / `.tool-versions` + `fvm_config.json`.
+
+### Week 0 / Day 1 preflight
+Before Module 1, everyone must pass the preflight checklist:
+- [`testing/PREFLIGHT_WEEK0_EN.md`](../testing/PREFLIGHT_WEEK0_EN.md)
+- [`testing/PREFLIGHT_WEEK0_UA.md`](../testing/PREFLIGHT_WEEK0_UA.md)
 
 ---
 
@@ -131,6 +142,15 @@ Flutter_Automation/
 ## Common pitfalls & mitigation
 - **Widget tree ≠ DOM**: explain “everything is a widget”.
 - **No XPath**: teach stable strategy = **Keys** + `find.text/byType`.
+
+## Key strategy (testability contract)
+To keep locators stable and reduce flaky tests, the training app will maintain a centralized key registry:
+- `app/lib/core/testing/keys.dart`
+
+Rules:
+- keys are constants (no ad-hoc strings in widgets)
+- consistent naming: `screen.<screenName>.<element>`
+- changing a key requires updating Page Objects and tests
 
 ---
 

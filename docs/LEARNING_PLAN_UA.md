@@ -19,19 +19,25 @@
 
 ---
 
-## 1) Загальна стратегія: як досягти 80% coverage
+## 1) E2E vs Coverage — чітко розділяємо (критично)
 
-> Важливо: 80% coverage у Flutter-автоматизації майже завжди досягається **unit/widget/integration** тестами на коді застосунку, а не тільки Appium E2E.
+Часте непорозуміння: **"80% coverage = багато Appium E2E"**.
+У Flutter-проєктах це зазвичай повільно, флейково і дорого.
 
-### Ми робимо так:
-- **App code coverage**: unit + widget + integration тести (Flutter test runner) — основа coverage.
-- **E2E (Appium)**: менше тестів, але найцінніші end-to-end сценарії.
-- **Test utilities** (`packages/test_utils`) — окремий пакет з утилітами/фікстурами, який теж має тести.
+### Наше правило
+- **Coverage (~80%)** робимо через **Flutter unit/widget/integration тести** (швидко, стабільно).
+- **E2E (Appium)** — для *невеликої кількості* критичних end-to-end сценаріїв.
 
-### Coverage правила:
+### Мапа типів тестів
+- **Unit** → доменна логіка (use cases), валідація, мапінг
+- **Widget** → UI-стани й композиція (loading/error/success)
+- **Integration** → флоу всередині Flutter runtime
+- **Appium E2E** → true end-to-end по екранах + девайсні взаємодії
+
+### Правила для ~80%
 - Кожен use case / repository / validator має unit-тести.
-- Кожен екран має widget-тест на ключові стани (loading, error, success).
-- Кожна важлива інтеграція (наприклад local storage / mock API) — integration tests.
+- Кожен екран має widget-тест на ключові стани.
+- Важливі інтеграції (storage/network mock) — integration tests.
 
 ---
 
@@ -42,12 +48,17 @@
 - **Flutter SDK:** 3.24.3 (stable) *(або інша стабільна — зафіксувати у `fvm`)*
 - **Dart:** 3.5.x (йде разом з Flutter SDK)
 - **Appium:** 2.11.4
-- **Node.js:** 22.x (LTS-like у вашому середовищі)
+- **Node.js:** 22.x
 - **Java (Android):** Temurin 17
 - **Android SDK:** platform 34, build-tools 34.0.0
 - **Xcode (iOS, опційно):** 15.x
 
 > Файли для фіксації: `.tool-versions` (asdf), або `.nvmrc`, + `fvm_config.json` (FVM).
+
+### Week 0 / Day 1 preflight
+Перед Module 1 всі мають пройти preflight чекліст:
+- [`testing/PREFLIGHT_WEEK0_UA.md`](../testing/PREFLIGHT_WEEK0_UA.md)
+- [`testing/PREFLIGHT_WEEK0_EN.md`](../testing/PREFLIGHT_WEEK0_EN.md)
 
 ---
 
@@ -136,6 +147,15 @@ Flutter_Automation/
 ## Типові складнощі + як їх пройти
 - **Widget tree ≠ DOM**: пояснюємо «все — widget», немає HTML-дерева.
 - **Немає XPath**: у Flutter тестах ставка на **Keys** + `find.text/byType`.
+
+## Стратегія Keys (контракт тестованості)
+Щоб локатори були стабільними і тести не флейкали, у навчальній апці буде централізований реєстр ключів:
+- `app/lib/core/testing/keys.dart`
+
+Правила:
+- keys як константи (без ad-hoc строк у віджетах)
+- єдина схема неймінгу: `screen.<screenName>.<element>`
+- зміна key = оновлення Page Objects і тестів
 
 ---
 
