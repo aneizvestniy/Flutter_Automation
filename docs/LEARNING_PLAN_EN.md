@@ -1,312 +1,185 @@
-# Flutter Automation Learning Repository — Plan (EN)
+# Flutter Automation Learning Repository — Structured Plan (EN)
 
-This repository is a training project for QA engineers with **2+ years of testing experience** who are **new to Flutter/Dart**. The goal is to take learners from “Flutter zero” to their **first working E2E test by the end of week 2**, and by the end of week 4 deliver a complete set of runnable examples, CI, and **~80% coverage** across the training app + testing utilities.
+This repository is designed for QA engineers with **2+ years of testing experience** who are **new to Flutter/Dart**.
 
----
-
-## 0) Success Criteria (Definition of Done)
-
-### By end of Week 2
-- [ ] Learner can run the training Flutter app locally.
-- [ ] Learner can set up Appium 2 + `appium-flutter-driver`.
-- [ ] Learner writes and runs their **first E2E test** (login flow, 5–7 steps).
-
-### By end of Week 4
-- [ ] All 4 modules are complete and all examples are **runnable**.
-- [ ] At least 1 full E2E scenario with **20+ steps**.
-- [ ] CI (GitHub Actions) runs lint + unit/widget/integration tests and (optionally) e2e.
-- [ ] Training examples reach ~**80% coverage** (on `app` + `test_utils`).
+## Primary outcomes
+- Learners can write and run their **first E2E test** (Appium + appium-flutter-driver) early in the learning path.
+- The repository provides runnable examples and a structure that can reach **~80% coverage** on the **training app + test utilities** (primarily via unit/widget/integration tests).
 
 ---
 
-## 1) E2E vs Coverage — explicit separation (critical)
+# 0) How to use this plan
+This plan is organized by **implementation points** (not by weeks). You can execute them sequentially.
 
-A common misunderstanding is: **"80% coverage = write many Appium E2E tests"**.
-In Flutter projects, that is usually too slow, too flaky, and too expensive.
+Repository folders:
+- `learn/` — learning modules and exercises
+- `app/` — the training Flutter application
+- `testing/` — test strategy + E2E framework + CI
+- `docs/` — high-level entry documents
 
-### Our rule
-- **Coverage (~80%)** is achieved via **Flutter unit/widget/integration tests** (fast, stable).
-- **E2E (Appium)** is for a *small number* of high-value user journeys (smoke/regression).
+---
 
-### Test types mapping
+# 1) E2E vs Coverage (explicit separation)
+A common misconception is: **"80% coverage = lots of Appium E2E"**.
+
+## 1.1 Rule
+- **Coverage (~80%)** is achieved via **Flutter unit/widget/integration tests**.
+- **Appium E2E** is kept small and focused on critical user journeys.
+
+## 1.2 Test types mapping (what covers what)
 - **Unit tests** → domain logic (use cases), validation, mapping
 - **Widget tests** → UI states and widget composition (loading/error/success)
 - **Integration tests** → feature flows inside Flutter runtime
-- **Appium E2E** → true end-to-end flows across screens + real device interactions
+- **Appium E2E** → end-to-end smoke/regression across screens + device interactions
 
-### Rules of thumb (to reach ~80%)
-- Every use case / repository / validator has unit tests.
-- Every screen has at least one widget test covering key states.
-- Important integrations (local storage, networking mock) are covered by integration tests.
+Artifacts:
+- (plan) `docs/LEARNING_PLAN_EN.md`
 
 ---
 
-## 2) Tool Versions (pin these in the repo)
+# 2) Environment readiness (Preflight)
+The #1 cause of lost time for QA engineers new to Flutter is environment setup.
 
-> Pinning avoids “works on my machine” issues.
+## 2.1 Preflight checklist
+- `testing/PREFLIGHT_WEEK0_EN.md`
+- `testing/PREFLIGHT_WEEK0_UA.md`
 
-- **Flutter SDK:** 3.24.3 (stable) *(or another pinned stable version via FVM)*
-- **Dart:** 3.5.x (bundled with Flutter)
-- **Appium:** 2.11.4
-- **Node.js:** 22.x
-- **Java (Android):** Temurin 17
-- **Android SDK:** platform 34, build-tools 34.0.0
-- **Xcode (optional):** 15.x
+## 2.2 Pinned toolchain versions (recommended)
+- Flutter SDK: **3.24.3** (stable) via FVM
+- Appium: **2.11.4**
+- Node: **22.x**
+- Java: **Temurin 17**
+- Android SDK: platform **34**, build-tools **34.0.0**
 
-Suggested pin files: `.nvmrc` / `.tool-versions` + `fvm_config.json`.
-
-### Week 0 / Day 1 preflight
-Before Module 1, everyone must pass the preflight checklist:
-- [`testing/PREFLIGHT_WEEK0_EN.md`](../testing/PREFLIGHT_WEEK0_EN.md)
-- [`testing/PREFLIGHT_WEEK0_UA.md`](../testing/PREFLIGHT_WEEK0_UA.md)
-
----
-
-## 3) Target Repository Structure
-
-```text
-Flutter_Automation/
-  docs/                         # high-level docs (entry points)
-    README.md
-    LEARNING_PLAN_UA.md
-    LEARNING_PLAN_EN.md
-
-  learn/                        # learning modules (week-by-week)
-    README.md
-    module-01-dart-flutter-basics/
-      README.md
-      exercises/
-      examples/
-    module-02-training-app/
-      README.md
-      exercises/
-    module-03-test-framework/
-      README.md
-    module-04-advanced/
-      README.md
-
-  app/                          # training Flutter app (Clean Architecture)
-    README.md
-    (generated Flutter project will live here)
-
-  testing/                      # testing setup and frameworks
-    README.md
-    unit_widget_integration/
-    e2e_appium/
-      README.md
-      package.json
-      docs/
-      src/
-    ci/
-
-  .github/workflows/
-    ci.yml
-  .nvmrc
-  fvm_config.json
-  Makefile
-  README.md
-```
+Artifacts:
+- (docs) preflight files above
+- (repo) `.nvmrc`, `fvm_config.json` (to be added when toolchain is pinned in code)
 
 ---
 
-## 4) Implementation Sequence (4 weeks)
+# 3) Training app architecture & testability contract
+The training app must be intentionally testable.
 
-### Added repo-level documents (supporting success criteria)
-- Week 0 preflight:
-  - `testing/PREFLIGHT_WEEK0_EN.md`
-  - `testing/PREFLIGHT_WEEK0_UA.md`
-- Seed/reset (test data management):
-  - `testing/TEST_DATA_SEEDING_EN.md`
-  - `testing/TEST_DATA_SEEDING_UA.md`
-- E2E synchronization standards:
-  - `testing/e2e_appium/docs/synchronization.md`
-- CI split strategy (always vs optional):
-  - `testing/CI_STRATEGY_EN.md`
-  - `testing/CI_STRATEGY_UA.md`
-- Week 2 E2E Definition of Ready:
-  - `testing/E2E_WEEK2_DEFINITION_OF_READY_EN.md`
-  - `testing/E2E_WEEK2_DEFINITION_OF_READY_UA.md`
-- Exit tickets per module:
-  - `learn/module-01-dart-flutter-basics/EXIT_TICKET.md`
-  - `learn/module-02-training-app/EXIT_TICKET.md`
-  - `learn/module-03-test-framework/EXIT_TICKET.md`
-  - `learn/module-04-advanced/EXIT_TICKET.md`
+## 3.1 Clean Architecture layout
+- presentation / domain / data
+- features are separated and discoverable for newcomers
 
-# MODULE 1 — Dart & Flutter Fundamentals (Week 1)
-
-## Learning outcomes (measurable)
-- [ ] Explain **Stateless vs Stateful** widgets.
-- [ ] Explain **Widget Tree** and Flutter rendering basics.
-- [ ] Use **Keys** (ValueKey) for stable test locators.
-- [ ] Navigate Flutter DevTools (Widget Inspector) to locate UI elements.
-
-## Folders/files to create
-- `docs/module-01-dart-flutter-basics/README.md`
-- `docs/module-01-dart-flutter-basics/devtools-guide.md`
-- `docs/module-01-dart-flutter-basics/examples/*`
-- `docs/module-01-dart-flutter-basics/exercises/*`
-
-## Code examples (minimum)
-1) **keys_demo**
-   - A screen where critical elements have `ValueKey`.
-
-2) **widget_tree_demo**
-   - Nested layout showcasing Widget Tree.
-
-3) **state_demo**
-   - Counter app using StatefulWidget and setState.
-
-## Practice exercises (for experienced QA)
-- Add `ValueKey` to 10 UI elements and document naming rules.
-- Use DevTools to locate 3 elements and describe their widget tree path.
-
-## Common pitfalls & mitigation
-- **Widget tree ≠ DOM**: explain “everything is a widget”.
-- **No XPath**: teach stable strategy = **Keys** + `find.text/byType`.
-
-## Key strategy (testability contract)
-To keep locators stable and reduce flaky tests, the training app will maintain a centralized key registry:
-- `app/lib/core/testing/keys.dart`
+## 3.2 Key strategy (testability contract)
+Stable locators in Flutter come from `ValueKey`.
 
 Rules:
-- keys are constants (no ad-hoc strings in widgets)
-- consistent naming: `screen.<screenName>.<element>`
-- changing a key requires updating Page Objects and tests
+- keys are centralized (no ad-hoc strings)
+- naming is stable: `screen.<screenName>.<element>`
+
+Artifacts:
+- `app/lib/core/testing/keys.dart`
+
+## 3.3 Minimal key set (must-have)
+- Login: email/password/submit
+- CRUD: create/list item/editor/save/delete
+
+Artifacts:
+- keys added into `AppKeys` and used in widgets
 
 ---
 
-# MODULE 2 — Training App (best practices) (Week 1–2)
+# 4) Learning modules (content for QA engineers)
+Modules live in `learn/` and contain:
+- README with outcomes
+- exercises with acceptance criteria
+- exit tickets (measurable completion)
 
-## Learning outcomes
-- [ ] Run the app locally (Android emulator / iOS simulator / desktop).
-- [ ] Understand **Clean Architecture** layers (presentation/domain/data).
-- [ ] Navigate routing & basic CRUD flows.
-
-## App requirements
-- Login screen.
-- CRUD feature (Notes/Tasks): create/list/edit/delete.
-- Navigation: login → list → details/edit → back.
-- States: loading/error/empty/success.
-- **ValueKey** for test-critical UI elements.
-
-## Suggested code layout
-```text
-app/lib/
-  core/
-    widgets/
-    theme/
-    routing/
-    errors/
-  features/
-    auth/
-      presentation/
-      domain/
-      data/
-    notes/
-      presentation/
-      domain/
-      data/
-```
-
-## Documentation to add
-- `docs/module-02-training-app/README.md` — dependencies + how to run.
-- `docs/module-02-training-app/architecture.md` — Clean Architecture notes.
-- `docs/module-02-training-app/troubleshooting.md` — common setup issues.
-
-## Practice
-- Add a new Notes field (e.g., `priority`) through all layers.
-- Add a feature flag and verify UI behavior.
+Artifacts:
+- `learn/module-01-dart-flutter-basics/*`
+- `learn/module-02-training-app/*`
+- `learn/module-03-test-framework/*`
+- `learn/module-04-advanced/*`
 
 ---
 
-# MODULE 3 — Test Framework & First Tests (Week 2–3)
+# 5) Test data management (seed/reset)
+E2E tests must start from a predictable state.
 
-## Week 2 Definition of Ready
-Before starting E2E, pass:
-- `testing/E2E_WEEK2_DEFINITION_OF_READY_EN.md`
+## 5.1 Recommended approach
+**In-memory repository + reset hook + debug-only actions**.
 
-## Sync standards
-Follow:
+## 5.2 Entry point options
+- Debug menu (teaching-friendly)
+- Deep-link/route commands (automation-friendly)
+- Method channel (advanced)
+
+Artifacts:
+- `testing/TEST_DATA_SEEDING_EN.md`
+- `testing/TEST_DATA_SEEDING_UA.md`
+
+---
+
+# 6) E2E framework (Appium + appium-flutter-driver)
+E2E lives under:
+- `testing/e2e_appium/`
+
+## 6.1 What we build
+- Appium setup docs
+- capabilities config
+- Page Objects
+- fixtures (test users, seeded entities)
+- test suites: login, CRUD, 20+ steps scenario
+
+Artifacts:
+- `testing/e2e_appium/README.md`
+- `testing/e2e_appium/docs/appium-setup.md`
+
+---
+
+# 7) E2E stability standards (synchronization)
+Flakiness comes from timing (animations, async rebuilds, navigation).
+
+Rules:
+- no raw `sleep()` by default
+- after each action: wait for a stable assertion
+- retries with small backoff over long fixed waits
+
+Artifacts:
 - `testing/e2e_appium/docs/synchronization.md`
 
-> Main milestone: **first E2E test by end of week 2**.
-
-## Learning outcomes
-- [ ] Install and configure Appium 2.
-- [ ] Configure `appium-flutter-driver`.
-- [ ] Use Flutter finders: `find.byValueKey`, `find.text`, `find.byType`.
-- [ ] Apply Page Object Pattern.
-- [ ] Write E2E tests: login + CRUD + full 20+ step scenario.
-
-## E2E structure (example)
-```text
-e2e/appium/src/
-  config/
-    env.ts
-    capabilities.android.ts
-  drivers/
-    appium.ts
-  pages/
-    login.page.ts
-    notes.list.page.ts
-    notes.editor.page.ts
-  fixtures/
-    users.ts
-    notes.ts
-  tests/
-    01_login.spec.ts
-    02_notes_crud.spec.ts
-    99_full_e2e_20_steps.spec.ts
-```
-
-## Base tests to implement
-- **Login flow (5–7 steps)**
-- **CRUD flow**
-- **20+ step full scenario** with detailed comments
-
-## Typical challenges
-- Sync: prefer explicit waits/retries over blind sleeps.
-- Animations: use driver wait strategies / stable locators.
-
 ---
 
-# MODULE 4 — Advanced Topics (Week 3–4)
+# 8) CI strategy (always vs optional)
+CI must be green by default.
 
-## CI: always vs optional
-Implement CI split described in:
+## 8.1 Always pipeline
+- format/lint
+- unit/widget tests
+- coverage + threshold
+
+## 8.2 Optional pipeline
+- Appium E2E on self-hosted runner
+
+Artifacts:
 - `testing/CI_STRATEGY_EN.md`
-
-## Learning outcomes
-- [ ] Stable synchronization for animations and delayed renders.
-- [ ] Parallel test execution strategy.
-- [ ] CI/CD with GitHub Actions.
-- [ ] Basic performance checks (metrics, tools).
-- [ ] Hybrid apps (WebView) concepts and testing strategy.
-
-## Documentation
-- `docs/module-04-advanced/animations-and-sync.md`
-- `docs/module-04-advanced/parallel-execution.md`
-- `docs/module-04-advanced/ci-github-actions.md`
-- `docs/module-04-advanced/performance.md`
-
-## Examples
-- Retry wrappers for flaky locators.
-- CI workflow covering lint + unit/widget/integration tests + coverage.
-- Optional e2e job on self-hosted runner.
+- `testing/CI_STRATEGY_UA.md`
 
 ---
 
-## 5) Root README requirements
-- Quickstart (Flutter/FVM, Node, Appium).
-- How to run app.
-- How to run unit/widget/integration tests.
-- How to run e2e.
-- Troubleshooting.
+# 9) Definition of Ready (DoR) for first E2E
+Before writing the first Appium E2E test, ensure:
+- minimal keys implemented
+- test user exists
+- seed/reset exists
+- debug build is available
+- emulator/device is ready
+
+Artifacts:
+- `testing/E2E_WEEK2_DEFINITION_OF_READY_EN.md`
+- `testing/E2E_WEEK2_DEFINITION_OF_READY_UA.md`
 
 ---
 
-## 6) Teaching notes for QA with 2+ years
-- Use web analogies (DOM vs widget tree, locators vs keys).
-- Provide copy-paste recipes (POM, fixtures, checklists).
-- Avoid basic programming lectures; focus on practical patterns.
+# 10) Measurable completion (Exit tickets)
+Each learning module has an exit ticket.
 
+Artifacts:
+- `learn/module-01-dart-flutter-basics/EXIT_TICKET.md`
+- `learn/module-02-training-app/EXIT_TICKET.md`
+- `learn/module-03-test-framework/EXIT_TICKET.md`
+- `learn/module-04-advanced/EXIT_TICKET.md`
