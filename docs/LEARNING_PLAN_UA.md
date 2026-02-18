@@ -113,6 +113,27 @@ Flutter_Automation/
 
 ## 4) Послідовність реалізації (4 тижні)
 
+### Додаткові repo-документи (під критерії успіху)
+- Week 0 preflight:
+  - `testing/PREFLIGHT_WEEK0_UA.md`
+  - `testing/PREFLIGHT_WEEK0_EN.md`
+- Seed/reset (test data management):
+  - `testing/TEST_DATA_SEEDING_UA.md`
+  - `testing/TEST_DATA_SEEDING_EN.md`
+- Стандарти синхронізації E2E:
+  - `testing/e2e_appium/docs/synchronization.md`
+- CI стратегія (always vs optional):
+  - `testing/CI_STRATEGY_UA.md`
+  - `testing/CI_STRATEGY_EN.md`
+- Week 2 E2E Definition of Ready:
+  - `testing/E2E_WEEK2_DEFINITION_OF_READY_UA.md`
+  - `testing/E2E_WEEK2_DEFINITION_OF_READY_EN.md`
+- Exit tickets по модулях:
+  - `learn/module-01-dart-flutter-basics/EXIT_TICKET.md`
+  - `learn/module-02-training-app/EXIT_TICKET.md`
+  - `learn/module-03-test-framework/EXIT_TICKET.md`
+  - `learn/module-04-advanced/EXIT_TICKET.md`
+
 # МОДУЛЬ 1 — Основи Dart та Flutter (Тиждень 1)
 
 ## Цілі навчання (вимірювані)
@@ -206,6 +227,14 @@ app/lib/
 
 # МОДУЛЬ 3 — Фреймворк для тестування та перші тести (Тиждень 2–3)
 
+## Week 2 Definition of Ready
+Перед стартом E2E пройди:
+- `testing/E2E_WEEK2_DEFINITION_OF_READY_UA.md`
+
+## Стандарти синхронізації
+Дотримуйся:
+- `testing/e2e_appium/docs/synchronization.md`
+
 > Головна віха: **перший E2E тест до кінця тижня 2**.
 
 ## Цілі навчання
@@ -259,6 +288,10 @@ e2e/appium/src/
 ---
 
 # МОДУЛЬ 4 — Розширені можливості (Тиждень 3–4)
+
+## CI: always vs optional
+Реалізуй стратегію з:
+- `testing/CI_STRATEGY_UA.md`
 
 ## Цілі навчання
 - [ ] Стабільна синхронізація (анімації, delayed renders, network).

@@ -111,6 +111,27 @@ Flutter_Automation/
 
 ## 4) Implementation Sequence (4 weeks)
 
+### Added repo-level documents (supporting success criteria)
+- Week 0 preflight:
+  - `testing/PREFLIGHT_WEEK0_EN.md`
+  - `testing/PREFLIGHT_WEEK0_UA.md`
+- Seed/reset (test data management):
+  - `testing/TEST_DATA_SEEDING_EN.md`
+  - `testing/TEST_DATA_SEEDING_UA.md`
+- E2E synchronization standards:
+  - `testing/e2e_appium/docs/synchronization.md`
+- CI split strategy (always vs optional):
+  - `testing/CI_STRATEGY_EN.md`
+  - `testing/CI_STRATEGY_UA.md`
+- Week 2 E2E Definition of Ready:
+  - `testing/E2E_WEEK2_DEFINITION_OF_READY_EN.md`
+  - `testing/E2E_WEEK2_DEFINITION_OF_READY_UA.md`
+- Exit tickets per module:
+  - `learn/module-01-dart-flutter-basics/EXIT_TICKET.md`
+  - `learn/module-02-training-app/EXIT_TICKET.md`
+  - `learn/module-03-test-framework/EXIT_TICKET.md`
+  - `learn/module-04-advanced/EXIT_TICKET.md`
+
 # MODULE 1 — Dart & Flutter Fundamentals (Week 1)
 
 ## Learning outcomes (measurable)
@@ -200,6 +221,14 @@ app/lib/
 
 # MODULE 3 — Test Framework & First Tests (Week 2–3)
 
+## Week 2 Definition of Ready
+Before starting E2E, pass:
+- `testing/E2E_WEEK2_DEFINITION_OF_READY_EN.md`
+
+## Sync standards
+Follow:
+- `testing/e2e_appium/docs/synchronization.md`
+
 > Main milestone: **first E2E test by end of week 2**.
 
 ## Learning outcomes
@@ -242,6 +271,10 @@ e2e/appium/src/
 ---
 
 # MODULE 4 — Advanced Topics (Week 3–4)
+
+## CI: always vs optional
+Implement CI split described in:
+- `testing/CI_STRATEGY_EN.md`
 
 ## Learning outcomes
 - [ ] Stable synchronization for animations and delayed renders.

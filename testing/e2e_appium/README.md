@@ -26,4 +26,7 @@ testing/e2e_appium/
 2) Start Appium server
 3) Run the test suite
 
-> This is a scaffold. We will add runnable code + detailed comments in the next implementation step.
+> This is a scaffold. Next steps:
+> - implement seed/reset strategy: `testing/TEST_DATA_SEEDING_EN.md`
+> - follow sync standards: `testing/e2e_appium/docs/synchronization.md`
+> - ensure Week2 readiness: `testing/E2E_WEEK2_DEFINITION_OF_READY_EN.md`
