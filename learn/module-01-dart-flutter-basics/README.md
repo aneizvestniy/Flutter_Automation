@@ -19,7 +19,9 @@ Flutter UI does not have a DOM. The most stable locator strategy is:
 2) use Flutter finders: `find.byValueKey`, `find.text`, `find.byType`
 
 ## Checklist
-- [ ] Read the DevTools guide
+- [ ] Read the DevTools guide: `devtools-guide.md`
+- [ ] Review examples: `examples/README.md`
 - [ ] Complete `exercises/ex01_keys.md`
 - [ ] Complete `exercises/ex02_widget_tree.md`
 - [ ] Complete `exercises/ex03_state.md`
+- [ ] Complete exit ticket: `EXIT_TICKET.md`
