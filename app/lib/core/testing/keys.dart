@@ -24,7 +24,7 @@
 ///   key: AppKeys.screenLoginEmail,
 /// )
 /// ```
-library;
+library app_keys;
 
 import 'package:flutter/widgets.dart';
 
