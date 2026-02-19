@@ -12,7 +12,7 @@ Get everyone to a "ready to learn" state **fast**. This avoids spending Week 1 d
 - Java: **Temurin 17**
 - Flutter: pinned via **FVM** (repo version)
 - Android SDK: platform **34**, build-tools **34.0.0**
-- Appium: **2.11.4**
+- Appium: **3.0.0**
 
 ---
 

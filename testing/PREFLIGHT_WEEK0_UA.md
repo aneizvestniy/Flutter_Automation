@@ -12,7 +12,7 @@
 - Java: **Temurin 17**
 - Flutter: зафіксований через **FVM** (версія в репозиторії)
 - Android SDK: platform **34**, build-tools **34.0.0**
-- Appium: **2.11.4**
+- Appium: **3.0.0**
 
 ---
 

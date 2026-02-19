@@ -46,7 +46,7 @@ The #1 cause of lost time for QA engineers new to Flutter is environment setup.
 
 ## 2.2 Pinned toolchain versions (recommended)
 - Flutter SDK: **3.24.3** (stable) via FVM
-- Appium: **2.11.4**
+- Appium: **3.0.0**
 - Node: **22.x**
 - Java: **Temurin 17**
 - Android SDK: platform **34**, build-tools **34.0.0**

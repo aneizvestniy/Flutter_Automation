@@ -10,13 +10,13 @@
 
 ## Install Appium 2
 ```bash
-npm i -g appium@2.11.4
+npm i -g appium@3.0.0
 appium -v
 ```
 
-## Install the Flutter driver plugin
+## Install the Flutter driver
 ```bash
-appium driver install flutter
+appium driver install --source=npm appium-flutter-driver
 appium driver list
 ```
 

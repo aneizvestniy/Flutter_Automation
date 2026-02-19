@@ -43,7 +43,7 @@
 
 ## 2.2 Рекомендовані pinned версії
 - Flutter SDK: **3.24.3** (stable) через FVM
-- Appium: **2.11.4**
+- Appium: **3.0.0**
 - Node: **22.x**
 - Java: **Temurin 17**
 - Android SDK: platform **34**, build-tools **34.0.0**
